@@ -2,19 +2,30 @@ import React from 'react';
 
 import './Editor.css';
 
-export default function Editor() {
+export default function Editor({
+  title,
+  setTitle,
+  subtitle,
+  setSubtitle,
+  font,
+  setFont,
+  align,
+  setAlign,
+  text,
+  setText,
+}) {
   return (
     <div className="editor">
       <div className="form-control">
-        <input name="title" type="text" />
+        <input value={title} name="title" type="text" onInput={(e) => setTitle(e.target.value)} />
         <label htmlFor="title">Title</label>
       </div>
       <div className="form-control">
-        <input type="text" />
+        <input value={subtitle} type="text" onInput={(e) => setSubtitle(e.target.value)} />
         <label>Subtitle</label>
       </div>
       <div className="form-control">
-        <select>
+        <select value={font} onChange={(e) => setFont(e.target.value)}>
           <option value="architect">{"Architect's Daughter"}</option>
           <option value="comforter">Comforter</option>
           <option value="fredoka">Fredoka</option>
@@ -28,7 +39,7 @@ export default function Editor() {
       </div>
       <div className="form-control">
         <label>Alignment</label>
-        <div className="radio-group">
+        <div value={align} className="radio-group" onChange={(e) => setAlign(e.target.value)}>
           <label>
             <input name="align" type="radio" value="left" />
             <i className="ri-align-left"></i>
@@ -44,7 +55,11 @@ export default function Editor() {
         </div>
       </div>
       <div className="form-control">
-        <textarea style={{ height: '250px' }} />
+        <textarea
+          value={text}
+          style={{ height: '250px' }}
+          onInput={(e) => setText(e.target.value)}
+        />
         <label>Text</label>
       </div>
     </div>
